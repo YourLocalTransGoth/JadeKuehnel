@@ -7,9 +7,19 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+body.nav-open .main,
+body.nav-open .container,
+body.nav-open .banner,
+body.nav-open .footerContainer,
+body.nav-open .certs {
+  margin-left: 250px;
+  transition: none;
 }
 .main {
   flex: 1;
+  transition: none;
 }
 
 
@@ -93,7 +103,7 @@ nav a {
 #image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 10px;
+    gap: 15px;
     color: white;
 }
 
@@ -126,28 +136,13 @@ img {
   text-align: center;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    color: white;
-}
-
-    .gallery img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-        color: white;
-    }
-
-
 
 
 
 
 .sidenav {
   height: 100%; 
-  width: 0; 
+  width: 250px; 
   position: fixed; 
   z-index: 1;
   top: 0; 
@@ -155,7 +150,7 @@ img {
   background-color: #111; 
   overflow-x: hidden; 
   padding-top: 60px; 
-  transition: 0.5s;
+  transition: none;
 }
 
 
@@ -193,10 +188,10 @@ img {
   padding-left: 100px; 
 }
 
-@media screen and (max-height: 450px) {
+/* @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-}
+} */
 
 .profile-image {
   border-radius: 50%;
@@ -240,7 +235,7 @@ img {
 }
 
 .banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Images/FullSize/Seattle/seattle3.JPG");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Images/Thumbnails/NYC/NYC32.jpg");
   height: 500px; /* Change this value to adjust banner height */
   min-height: 400px;
   background-position: center;
@@ -287,7 +282,7 @@ img {
   }
 }
 
-.openbtn {
+/* .openbtn {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -303,7 +298,7 @@ img {
 }
 .openbtn:hover {
   background: #333;
-}
+} */
 
 .projects-container {
     display: flex;
@@ -344,4 +339,12 @@ img {
   .projects img {
     max-width: 90vw;
   }
+}
+
+
+
+.page-title {
+    text-align: right;
+    margin-bottom: 20px;
+    color: white;
 }
