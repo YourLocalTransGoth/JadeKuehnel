@@ -3,6 +3,11 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -10,16 +15,25 @@ body {
   overflow-x: hidden;
 }
 body.nav-open .main,
-body.nav-open .container,
 body.nav-open .banner,
 body.nav-open .footerContainer,
 body.nav-open .certs {
   margin-left: 250px;
   transition: none;
 }
+body.nav-open .banner,
+body.nav-open .footerContainer,
+body.nav-open .certs {
+  width: calc(100% - 250px);
+  box-sizing: border-box;
+}
 .main {
   flex: 1;
   transition: none;
+}
+
+.mobile-nav-toggle {
+  display: none;
 }
 
 
@@ -101,18 +115,28 @@ nav a {
 }
 
 #image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
+    column-width: 250px;
+    column-gap: 15px;
     color: white;
 }
 
+#image-grid > div {
+    break-inside: avoid;
+    margin-bottom: 15px;
+}
 
+.imageV,
+.imageH,
 .image {
     width: 100%;
-    height: auto;
     border-radius: 5px;
     color: white;
+}
+
+#image-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 img {
@@ -180,12 +204,11 @@ img {
 
 .main {
   transition: margin-left .5s;
-  padding: 20px;
+  padding: 20px clamp(16px, 4vw, 40px);
 }
 .concerts {
   transition: margin-left .5s;
-  padding: 20px;
-  padding-left: 100px; 
+  padding: 20px clamp(16px, 4vw, 40px);
 }
 
 /* @media screen and (max-height: 450px) {
@@ -251,6 +274,7 @@ img {
 }
 
 .banner-text {
+  width: 100%;
   text-align: center;
   color: white;
   font-size: 2.5rem;
@@ -347,4 +371,125 @@ img {
     text-align: right;
     margin-bottom: 20px;
     color: white;
+}
+
+@media (max-width: 700px) {
+  .mobile-nav-toggle {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 8px;
+    border: 0;
+    background: #111;
+    color: white;
+    font: bold 1.5rem/1 Arial, sans-serif;
+    cursor: pointer;
+  }
+
+  body.nav-open .main,
+  body.nav-open .banner,
+  body.nav-open .footerContainer,
+  body.nav-open .certs {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .sidenav {
+    position: relative;
+    width: 100% !important;
+    height: auto;
+    min-height: 0;
+    flex-shrink: 0;
+    padding: 16px 12px;
+    overflow: visible;
+  }
+
+  .sidenav.is-collapsed {
+    display: none;
+  }
+
+  #title {
+    margin-bottom: 8px;
+    font-size: 1.35rem;
+  }
+
+  .sidenav a,
+  .sidenav .dropdown > a {
+    padding: 9px 8px;
+    font-size: 1.05rem;
+  }
+
+  .sidenav .dropdown-content {
+    display: block;
+    margin: 0 0 4px 8px;
+    padding: 0 0 0 10px;
+    border-left: 1px solid #444;
+  }
+
+  .sidenav.is-collapsed .dropdown-content {
+    display: none;
+  }
+
+  .sidenav .dropdown-content a {
+    padding: 7px 8px;
+    font-size: 0.95rem;
+  }
+
+  .main,
+  .concerts {
+    padding: 16px;
+  }
+
+  .container {
+    max-width: none;
+    padding: 8px 0;
+  }
+
+  .concert {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .projects-container,
+  .featured-container {
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .projects,
+  .featured {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 12px;
+  }
+
+  .projects h1,
+  .featured h2 {
+    font-size: 1.35rem;
+    text-align: center;
+  }
+
+  .footerContainer {
+    padding: 16px;
+  }
+
+  .footerContainer .socialMedia a {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .concert {
+    grid-template-columns: 1fr;
+  }
+
+  .banner-text {
+    font-size: 1.3rem;
+  }
 }
